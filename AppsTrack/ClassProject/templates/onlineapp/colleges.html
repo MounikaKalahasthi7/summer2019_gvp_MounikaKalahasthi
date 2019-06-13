@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Colleges List</title>
+    <link rel="stylesheet" href="{% static 'css/bulma.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1 style="font-size: 2em">Colleges</h1>
+        <table>
+            <tr>
+                <td><button class="button is-primary" type="submit" onclick="{% url 'add_college' %}">Add College</button></td>
+                <td><button class="button is-primary" type="submit" onclick="{% url 'user_logout' %}">logout</button></td>
+            </tr>
+        </table>
+
+        <table class="table is-bordered is-striped">
+            <tr>
+                <th>ID</th>
+                <th>College Name</th>
+                <th>Acronym</th>
+                <th>Location</th>
+                <th>Contact</th>
+                <th>Action</th>
+            </tr>
+            {% for college in coll %}
+                <tr>
+                    <td>{{ college.id }}</td>
+                    <td> <a href="/colleges/{{ college.acronym }}/">{{ college.name }} </a></td>
+                    <td>{{ college.acronym }}</td>
+                    <td>{{ college.location }}</td>
+                    <td>{{ college.contact }}</td>
+                    <td>  <a href="/colleges/{{ college.acronym }}/edit-college-form/">edit</a> | <a>delete</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

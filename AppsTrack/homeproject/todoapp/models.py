@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
 class todolist(models.Model):
     name = models.CharField(max_length=128)
     current_datetime = models.DateField(auto_now_add=True)

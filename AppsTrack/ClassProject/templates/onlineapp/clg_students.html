@@ -1,0 +1,29 @@
+<!DOCTYPE html
+{% load staticfiles %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OnlineApp</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/clg_students.css' %}">
+</head>
+<body>
+        <h1>Students of {{clg_name|safe}}</h1>
+        <table id="students">
+        {% for field in fields %}
+            <tr>
+                <th>{{field.student__id|safe}}</th>
+                <th>{{field.student__name|safe}}</th>
+                <th>{{field.total|safe}}</th>
+            </tr>
+        {% endfor %}
+        {% for i in data %}
+            <tr>
+                <td>{{i.student__id|safe}}</td>
+                <td>{{i.student__name|safe}}</td>
+                <td>{{i.total|safe}}</td>
+            </tr>
+        {% endfor %}
+        </table>
+</body>
+</html>

@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.conf import settings
 from django.urls import include, path
+from todoapp.views.auth_view import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('todoapp/', include('todoapp.urls')),
 ]
 
 if settings.DEBUG:

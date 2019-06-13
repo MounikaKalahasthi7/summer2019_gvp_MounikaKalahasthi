@@ -15,9 +15,26 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf import settings
+from django.conf.urls import url
 from django.urls import include, path
 
+from onlineapp.views.college import CollegeView, StudentView, LoginView, user_logout
+
 urlpatterns = [
+    # url(r'^$', views.hello, name="onlinepp"),
+    path('colleges/', CollegeView.as_view(), name='colleges_html'),
+    path('colleges/add-college/', CollegeView.as_view(), name='add_college'),
+    path('colleges/<str:acronym>/delete-college/', CollegeView.as_view(), name='delete_college'),
+    path('colleges/<str:acronym>/edit-college/', CollegeView.as_view(), name='edit_college'),
+    # path('colleges/<str:acronym>/edit-college-form/', CollegeView.as_view(), name='edit_college_form'),
+    path('colleges/<str:acronym>/', CollegeView.as_view(), name='students_html'),
+    path('colleges/<str:college_acronym>/add-student/', StudentView.as_view(), name='add-student'),
+    path('colleges/<str:college_acronym>/delete-student/', StudentView.as_view(), name='delete_student'),
+    path('login/', LoginView.as_view() , name='user_login'),
+    path('logout/', user_logout, name='user_logout'),
+    path('signup/', LoginView.as_view(), name='user_signup'),
+
+    url('^onlineapp/', include('onlineapp.urls')),
     path('admin/', admin.site.urls),
 ]
 

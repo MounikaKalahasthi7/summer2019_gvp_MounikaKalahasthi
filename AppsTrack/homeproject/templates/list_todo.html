@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> todo_lists</title>
+</head>
+<body>
+    <div class="container">
+        <div class="container" style="margin-top: 2%">
+            <h1 style="font-size: 2em; display: inline-block; padding-bottom: 1%">todo list</h1>
+            <table class="table is-bordered is-striped is-fullwidth">
+                <tr>
+                    <th> Name </th>
+                    <th> Created_at </th>
+                    {% if request.user.is_superuser %}
+                        <th> Action </th>
+                    {% endif %}
+                </tr>
+
+                {% for row in data %}
+                <tr>
+                    <td> <a href="/items/{{ row.id | safe }}"> {{ row.name | safe }} </a> </td>
+                    <td> {{ row.current_datetime | safe }} </td>
+                    {% if request.user.is_superuser %}
+                        <td><a href="/lists/edit/{{ row.id |safe }}">edit</a></td> |
+                        <td><a href="/lists/delete/{{ row.id |safe }}">delete</a></td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+
+
+
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -54,50 +54,50 @@ def add_college_data(data):
     c.save()
     return
 
-# dummy method
-def all_fields_college_data():
-    # display all data
-    c = College.objects.all()
-    data_list = c.values()
-
-    # num_of_records
-
-    len(data_list) # or
-    College.objects.count()
-
-    # retrieve only particular fields
-    for each_rec in data_list:
-        print(each_rec['acronym'], each_rec["contact"])
-        # or
-    fields= College.objects.values('acronym', 'contact')
-
-    # both particular fields and constraints
-    fields = College.objects.values('acronym', 'contact').filter(acronym='gvp')
-
-    # constraints and count
-    fields = College.objects.filter(location='vizag').count()
-
-    # retrieving in sorted way ascending
-    data = College.objects.values().order_by('acronym')
-    # retrieving in sorted way descending
-    data = College.objects.values().order_by('-acronym')
-
-    # top 5 elements
-    data = College.objects.values().order_by('acronym')[:5]
-
-    # bottom 5 elements
-    data = College.objects.values().order_by('-acronym')[-5:]
-
-    #group data
-    from django.db.models import Count
-    data = College.objects.values('location').annotate(num_sum=Count('location'))
-
-    # two dbs
-    data = Student.objects.filter(dropped_out=True).values('college').distinct()
-
-    # num of students in each college
-    data = Student.objects.values(College('college')).annotate(num_sum=Count('college'))
-    pass
+# # dummy method
+# def all_fields_college_data():
+#     # display all data
+#     c = College.objects.all()
+#     data_list = c.values()
+#
+#     # num_of_records
+#
+#     len(data_list) # or
+#     College.objects.count()
+#
+#     # retrieve only particular fields
+#     for each_rec in data_list:
+#         print(each_rec['acronym'], each_rec["contact"])
+#         # or
+#     fields= College.objects.values('acronym', 'contact')
+#
+#     # both particular fields and constraints
+#     fields = College.objects.values('acronym', 'contact').filter(acronym='gvp')
+#
+#     # constraints and count
+#     fields = College.objects.filter(location='vizag').count()
+#
+#     # retrieving in sorted way ascending
+#     data = College.objects.values().order_by('acronym')
+#     # retrieving in sorted way descending
+#     data = College.objects.values().order_by('-acronym')
+#
+#     # top 5 elements
+#     data = College.objects.values().order_by('acronym')[:5]
+#
+#     # bottom 5 elements
+#     data = College.objects.values().order_by('-acronym')[-5:]
+#
+#     #group data
+#     from django.db.models import Count
+#     data = College.objects.values('location').annotate(num_sum=Count('location'))
+#
+#     # two dbs
+#     data = Student.objects.filter(dropped_out=True).values('college').distinct()
+#
+#     # num of students in each college
+#     data = Student.objects.values(College('college')).annotate(num_sum=Count('college'))
+#     pass
 
 def add_student_data(data):
     s=Student()

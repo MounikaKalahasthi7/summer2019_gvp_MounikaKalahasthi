@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ college | upper }} Students list</title>
+    <link rel="stylesheet" href="{% static 'css/bulma.css' %}">
+</head>
+<body>
+    <h1 style="font-size: 2em">{{ college | upper }}</h1>
+    <form method="get" action="/colleges/{{ college }}/add-student/">
+        <button class="button is-primary" type="submit">Add Student</button>
+    </form>
+
+    <form method="get" action="{% url 'user_logout' %}">
+        <button class="button is-primary" type="submit">logout</button>
+    </form>
+
+    <table class="table is-striped is-bordered">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Marks</th>
+        </tr>
+        {% for student in coll %}
+            <tr>
+                <td>{{ student.student__id }}</td>
+                <td>{{ student.student__name }}</td>
+                <td>
+                    {{ student.total }}
+                </td>
+            </tr>
+        {% endfor %}
+
+    </table>
+
+</body>
+</html>

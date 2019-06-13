@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{page_title | safe}} | todoApp</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bulma.css' %}">
+</head>
+<body>
+    <div class="columns is-centered" style="margin-top: 1%">
+        <div class="column is-half">
+            <h2 class="heading" style="font-size: 2vw;">{{page_title | safe}}</h2>
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                {{ form | safe }}
+
+                <p>
+                    <button type="submit" class="button is-primary">Submit</button>
+                </p>
+                <hr>
+                {% if page_title == 'Login'%}
+                <p>
+                    <a class="tag is-info is-medium" href="{% url 'signup' %}">SignUp</a>
+                </p>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</body>
+</html>

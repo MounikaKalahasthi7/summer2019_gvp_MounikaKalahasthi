@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title | safe }}</title>
+    <link rel="stylesheet" type="text/css" href="static/bulma.css">
+</head>
+<body>
+
+    <div>
+        <form class="" method="post" action="/{{action}}/">
+            {% csrf_token %}
+                {{ form | safe}}
+                <div class="control">
+                    <button class="button is-link">Submit</button>
+                </div>
+        </form>
+
+        <div>
+            <a href="../signup">Sign up</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

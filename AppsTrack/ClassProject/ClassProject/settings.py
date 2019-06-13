@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
+    'widget_tweaks',
+    'rest_framework',
     'onlineapp.apps.OnlineappConfig',
 ]
 
@@ -54,10 +56,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'ClassProject.urls'
 
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ TEMPLATE_DIR ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -140,3 +144,5 @@ INTERNAL_IPS = [ '127.0.0.1', ]
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_DIR = os.path.join(BASE_DIR,'static')
+STATICFILES_DIRS = [STATIC_DIR, ]
